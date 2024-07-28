@@ -1,3 +1,3 @@
-export function disableScroll() {
-    document.body.classList.toggle('noscroll')
-}
+export const disableScroll = () => {
+    document.body.classList.toggle('noscroll');
+};

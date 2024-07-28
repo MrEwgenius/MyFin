@@ -1,46 +1,33 @@
 
 import { GetUserInfo } from "./constructor.js"
-import { disableScroll } from "./disabledScroll.js"
+import { modalFormToggle } from "./formToogle.js"
 import { inputsClear } from "./inputClear.js"
 
 let modal = document.querySelector('.modal')
 let form = document.querySelector('.modal-form')
-let closeModalButton  = form.querySelector('.modal-close')
-let openModalButtons  = document.querySelectorAll('.apply-btn')
+let closeModalButton = form.querySelector('.modal-close')
+let openModalButtons = document.querySelectorAll('.apply-btn')
 let inputUserName = form.querySelector('.modal-input-name')
 let inputContactInformation = form.querySelector('.modal-input-contactInformation')
 
-function modalFormToggle() {
-    modal.classList.toggle('modal-active')
-    disableScroll()
-    inputsClear([inputUserName, inputContactInformation])
-
-}
-openModalButtons .forEach((btn) => {
+openModalButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
         modalFormToggle()
     })
-
-
 })
-
-
 
 modal.addEventListener('click', (e) => {
     if (e.target.classList.contains('modal')) {
         modalFormToggle()
     }
 })
-inputUserName.addEventListener('keyup', () => {
-
-})
 
 form.addEventListener('submit', getData)
 
 function getData(e) {
-
     e.preventDefault()
     if (inputUserName.value && inputContactInformation.value) {
+
         let data = new GetUserInfo(inputUserName.value.trim(), inputContactInformation.value.trim())
         console.log(data);
         $.ajax({
@@ -64,8 +51,5 @@ function getData(e) {
     } else {
         alert('Пожалуйста, заполните все поля.')
     }
-
-
-
 }
-closeModalButton .addEventListener('click', modalFormToggle)
+closeModalButton.addEventListener('click', modalFormToggle)
