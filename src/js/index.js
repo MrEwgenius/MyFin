@@ -55,12 +55,12 @@ function getData(e) {
                 modalFormToggle()
                 alert(response.message);
                 console.log(response.data);
+                inputsClear([inputUserName, inputContactInformation])
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error('Error:', textStatus, errorThrown);
             }
         });
-        inputsClear([inputUserName, inputContactInformation])
     } else {
         alert('Пожалуйста, заполните все поля.')
     }
